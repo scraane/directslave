@@ -25,6 +25,7 @@ fi
 
 # make sure bind is owner of the /app folder
 chown -R named:named /app
+chown named:named /etc/bind/named.conf
 
 # check our config
 /usr/local/directslave/bin/directslave-linux-amd64 --check
