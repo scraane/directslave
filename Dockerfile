@@ -17,6 +17,7 @@ RUN /usr/sbin/named-checkconf /etc/bind/named.conf
 RUN echo 'include "/app/directslave.inc";' >> /etc/bind/named.conf
 COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY entry.sh /entry.sh
+RUN dos2unix /entry.sh
 RUN chmod +x /entry.sh
 ENTRYPOINT ["/entry.sh"]
 EXPOSE 53/udp 53/tcp 2222/tcp
