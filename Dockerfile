@@ -1,6 +1,6 @@
 FROM alpine:latest
 RUN apk update
-RUN apk add bind9 supervisor
+RUN apk add bind supervisor
 RUN rm -rf /tmp/* /var/tmp/*
 RUN cp /etc/bind/named.conf.authoritive /etc/bind/named.conf
 COPY ./named.conf.options /etc/bind
