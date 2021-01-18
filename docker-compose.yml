@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+
+  directslave:
+    image: scraane/docker-directslave
+    container_name: directslave
+    ports:
+      - target: 2222
+        published: 2222
+        protocol: tcp
+      - target: 53
+        published: 53
+        protocol: tcp
+      - target: 53
+        published: 53
+        protocol: udp
+    volumes:
+      - directslave:/app
+volumes:
+  directslave:
