@@ -2,10 +2,11 @@ FROM alpine:latest
 RUN apk update
 RUN apk add bash bind supervisor openrc syslog
 RUN rm -rf /tmp/* /var/tmp/*
-RUN rc-update add syslog boot && rc-service syslog start
 #RUN cp /etc/bind/named.conf.authoritive /etc/bind/named.conf
 COPY ./named.conf /etc/bind/named.conf
 RUN mkdir /var/cache/bind
+RUN chown -R named:named /var/bind /etc/bind /var/run/named /var/log/named
+RUN chmod -R o-rwx /var/bind /etc/bind /var/run/named /var/log/named
 RUN mkdir /etc/supervisor.d
 ADD directslave-3.4.1-advanced-all.tar.gz /usr/local/
 COPY ./directslave.conf /usr/local/directslave/etc/directslave.conf
