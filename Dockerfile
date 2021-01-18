@@ -1,6 +1,6 @@
 FROM alpine:latest
 RUN apk update
-RUN apk add bash bind supervisor openrc syslog
+RUN apk add bash bind supervisor openrc
 RUN rm -rf /tmp/* /var/tmp/*
 #RUN cp /etc/bind/named.conf.authoritive /etc/bind/named.conf
 COPY ./named.conf /etc/bind/named.conf
