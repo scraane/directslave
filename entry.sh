@@ -18,13 +18,13 @@ if [ -f "/app/passwd" ]; then
 else 
     echo "/app/passwd does not exist. Creating"
     touch /app/passwd
-    chown -R bind:bind /app
+    chown -R named:named /app
     # here we add the default user admin with very secure password password
     /usr/local/directslave/bin/directslave-linux-amd64 --password admin:password
 fi
 
 # make sure bind is owner of the /app folder
-chown -R bind:bind /app
+chown -R named:named /app
 
 # check our config
 /usr/local/directslave/bin/directslave-linux-amd64 --check
