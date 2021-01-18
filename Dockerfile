@@ -1,9 +1,10 @@
 FROM alpine:latest
 RUN apk update
-RUN apk add bind supervisor
+RUN apk add bind9 supervisor
 RUN rm -rf /tmp/* /var/tmp/*
 #RUN cp /etc/bind/named.conf.authoritive /etc/bind/named.conf
 COPY ./named.conf /etc/bind/named.conf
+RUN mkdir /var/cache/bind
 ADD directslave-3.4.1-advanced-all.tar.gz /usr/local/
 COPY ./directslave.conf /usr/local/directslave/etc/directslave.conf
 RUN cat /usr/local/directslave/etc/directslave.conf
