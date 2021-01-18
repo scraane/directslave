@@ -16,7 +16,7 @@ RUN chmod +x /usr/local/directslave/bin/*
 RUN chown -R named:named /usr/local/directslave
 RUN /usr/sbin/named-checkconf /etc/bind/named.conf
 RUN echo 'include "/app/directslave.inc";' >> /etc/bind/named.conf
-COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.ini
+COPY ./supervisord.conf /etc/supervisor.d/supervisord.ini
 COPY entry.sh /entry.sh
 RUN dos2unix /entry.sh
 RUN chmod +x /entry.sh
