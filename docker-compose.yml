@@ -2,7 +2,7 @@ version: '3.7'
 services:
 
   directslave:
-    image: scraane/docker-directslave
+    image: directslave
     container_name: directslave
     ports:
       - target: 2222
