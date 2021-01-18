@@ -36,4 +36,4 @@ printf "\r\n\r\n****************************************************************
 
 
 # run supervisord
-/usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
+/usr/bin/supervisord -n -c /etc/supervisord.conf
