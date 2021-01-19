@@ -16,8 +16,7 @@ RUN rm /usr/local/directslave/bin/directslave-freebsd-amd64 /usr/local/directsla
     /usr/local/directslave/bin/directslave-linux-arm /usr/local/directslave/bin/directslave-linux-i386 \
     /usr/local/directslave/bin/directslave-macos-amd64
 RUN mkdir /app /app/slave /app/logs
-RUN chown -R named:named /app
-RUN chmod -R 777 /app
+RUN chown -R named:named /app && chmod -R 777 /app
 RUN chmod +x /usr/local/directslave/bin/* && chown -R named:named /usr/local/directslave
 COPY ./supervisord.conf /etc/supervisor.d/supervisord.ini
 COPY entry.sh /entry.sh
