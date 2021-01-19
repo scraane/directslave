@@ -1,4 +1,7 @@
 "/app/logs/*.log" {
            rotate 5
            size 100k
+           postrotate
+             /usr/local/directslave/bin/directslave-linux-amd64 --check
+           endscript
        }
