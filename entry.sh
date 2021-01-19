@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # if the security key is not set yet (first time run) we set it
 echo Changing security key if needed
