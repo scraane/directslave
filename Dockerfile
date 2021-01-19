@@ -11,6 +11,9 @@ RUN mkdir /etc/supervisor.d
 ADD directslave-3.4.1-advanced-all.tar.gz /usr/local/
 COPY ./directslave.conf /usr/local/directslave/etc/directslave.conf
 RUN cat /usr/local/directslave/etc/directslave.conf
+RUN rm /usr/local/directslave/bin/directslave-freebsd-amd64 /usr/local/directslave/bin/directslave-freebsd-i386 \
+    /usr/local/directslave/bin/directslave-linux-arm /usr/local/directslave/bin/directslave-linux-i386 \
+    /usr/local/directslave/bin/directslave-macos-amd64
 RUN mkdir /app /app/slave /app/logs
 RUN chown -R named:named /app
 RUN chmod -R 777 /app
