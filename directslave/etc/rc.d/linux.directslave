@@ -1,0 +1,64 @@
+#!/bin/sh
+
+# directslave daemon            Start/Stop/Status/Restart
+
+# chkconfig: 2345 80 20
+# description: Allow you to use DirectAdmin Multi-Server function \
+#              without need to have a DirectAdmin license, \
+#              for manage external DNS Server.
+# processname: directslave
+# config: /usr/local/directslave/etc/directslave.conf
+# pidfile: /usr/local/directslave/run/directslave.pid
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+PROGBIN="/usr/local/directslave/bin/directslave --run"
+PROGLOCK=/var/lock/subsys/directslave
+PROGNAME=directslave
+
+#check the command line for actions
+
+start() {
+        echo -n "Starting DirectSlave: "
+        daemon $PROGBIN
+        echo
+        touch $PROGLOCK
+}
+
+stop() {
+        echo -n "Stopping DirectSlave: "
+        killproc $PROGNAME
+        echo
+        rm -f $PROGLOCK
+}
+
+reload() {
+        echo -n "Reloading DirectSlave config file: "
+        killproc $PROGNAME -HUP
+        echo
+}
+
+case "$1" in
+        start)
+                start
+                ;;
+        stop)
+                stop
+                ;;
+        status)
+                status $PROGNAME
+                ;;
+        restart)
+                stop
+                start
+                ;;
+        reload)
+                reload
+                ;;
+        *)
+                echo "Usage: $1 {start|stop|status|reload|restart}"
+                exit 1
+esac
+
+exit 0
