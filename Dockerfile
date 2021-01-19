@@ -14,8 +14,7 @@ RUN cat /usr/local/directslave/etc/directslave.conf
 RUN mkdir /app /app/slave /app/logs
 RUN chown -R named:named /app
 RUN chmod -R 777 /app
-RUN chmod +x /usr/local/directslave/bin/*
-RUN chown -R named:named /usr/local/directslave
+RUN chmod +x /usr/local/directslave/bin/* && chown -R named:named /usr/local/directslave
 COPY ./supervisord.conf /etc/supervisor.d/supervisord.ini
 COPY entry.sh /entry.sh
 RUN dos2unix /entry.sh
