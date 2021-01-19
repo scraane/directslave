@@ -1,6 +1,6 @@
 FROM alpine:latest
 RUN apk update
-RUN apk add bind supervisor logrotate
+RUN apk add bash bind supervisor logrotate
 RUN rm -rf /tmp/* /var/tmp/*
 COPY ./directslave.logrotate /etc/logrotate.d/directslave
 COPY ./named.conf /etc/bind/named.conf
