@@ -2,7 +2,7 @@ FROM alpine:latest
 RUN apk --no-cache update
 RUN apk --no-cache add bash bind supervisor logrotate
 RUN rm -rf /tmp/* /var/tmp/*
-COPY directslave /usr/local
+COPY directslave /usr/local/
 COPY ./directslave.logrotate /etc/logrotate.d/directslave
 COPY ./named.conf /etc/bind/named.conf
 RUN mkdir /var/cache/bind
