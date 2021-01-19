@@ -1,8 +1,8 @@
 FROM alpine:latest
 RUN apk update
-RUN apk add bash bind supervisor openrc
+RUN apk add bash bind supervisor logrotate
 RUN rm -rf /tmp/* /var/tmp/*
-#RUN cp /etc/bind/named.conf.authoritive /etc/bind/named.conf
+COPY ./directslave.logrotate /etc/logrotate.d/directslave
 COPY ./named.conf /etc/bind/named.conf
 RUN mkdir /var/cache/bind
 RUN chown -R named:named /var/bind /etc/bind /var/run/named /var/cache/bind
@@ -16,8 +16,6 @@ RUN chown -R named:named /app
 RUN chmod -R 777 /app
 RUN chmod +x /usr/local/directslave/bin/*
 RUN chown -R named:named /usr/local/directslave
-#RUN /usr/sbin/named-checkconf /etc/bind/named.conf
-#RUN echo 'include "/app/directslave.inc";' >> /etc/bind/named.conf
 COPY ./supervisord.conf /etc/supervisor.d/supervisord.ini
 COPY entry.sh /entry.sh
 RUN dos2unix /entry.sh

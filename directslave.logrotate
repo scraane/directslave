@@ -1,0 +1,4 @@
+"/app/logs/*.log" {
+           rotate 5
+           size 100k
+       }
