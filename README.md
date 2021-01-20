@@ -1,7 +1,7 @@
 # directslave
 DirectSlave docker based on alpine
 
-[![GitHub issues](https://img.shields.io/github/issues/scraane/directslave?style=flat-square)](https://github.com/scraane/directslave/issues) [![GitHub license](https://img.shields.io/github/license/scraane/directslave?style=flat-square)](https://github.com/scraane/directslave/blob/main/LICENSE) [![Docker Pulls](https://img.shields.io/docker/pulls/nutjob/directadmin?style=flat-square)](https://hub.docker.com/r/nutjob/directslave)
+[![GitHub issues](https://img.shields.io/github/issues/scraane/directslave?style=flat-square)](https://github.com/scraane/directslave/issues) [![GitHub license](https://img.shields.io/github/license/scraane/directslave?style=flat-square)](https://github.com/scraane/directslave/blob/main/LICENSE) [![Docker Pulls](https://img.shields.io/docker/pulls/nutjob/directslave?style=flat-square)](https://hub.docker.com/r/nutjob/directslave)
 
 When using the docker-compose file it will all be setup for you.
 A volume will be created and mapped to /app in the docker.
