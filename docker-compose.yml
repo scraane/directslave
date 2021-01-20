@@ -2,7 +2,7 @@ version: '3.7'
 services:
 
   directslave:
-    image: directslave
+    image: nutjob/directslave
     container_name: directslave
     ports:
       - target: 2222
