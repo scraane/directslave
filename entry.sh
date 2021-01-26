@@ -25,6 +25,7 @@ fi
 
 # make sure bind is owner of the /app folder
 chown -R named:named /app
+chmod -R 777 /app
 chown named:named /etc/bind/named.conf
 
 # check our config
