@@ -19,8 +19,13 @@ else
     echo "/app/passwd does not exist. Creating"
     touch /app/passwd
     chown -R named:named /app
+    PASSWD=$(openssl rand -base64 12)
     # here we add the default user admin with very secure password password
-    /usr/local/directslave/bin/directslave-linux-amd64 --password admin:password
+    /usr/local/directslave/bin/directslave-linux-amd64 --password admin:$PASSWD
+    printf "\r\n\r\n*****************************************************************************************\r\n**\r\n"
+    printf "**  We are probably starting for the first time with no username and password. Creating now\r\n"
+    printf "**  >--> default: admin / %s " "$PASSWD"
+    printf "\r\n**\r\n*****************************************************************************************\r\n\r\n"
 fi
 
 # make sure bind is owner of the /app folder
@@ -30,12 +35,6 @@ chown named:named /etc/bind/named.conf
 
 # check our config
 /usr/local/directslave/bin/directslave-linux-amd64 --check
-
-printf "\r\n\r\n*************************************************************************************\r\n\r\n"
-printf "If this is the first time you start you will need to change te default username/pass\r\n"
-printf '>--> default: admin/password\r\n'
-printf "\r\n\r\n*************************************************************************************\r\n\r\n"
-
 
 # run supervisord
 /usr/bin/supervisord -n -c /etc/supervisord.conf
