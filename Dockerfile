@@ -13,10 +13,15 @@ RUN cat /usr/local/directslave/etc/directslave.conf
 RUN rm /usr/local/directslave/bin/directslave-freebsd-amd64 /usr/local/directslave/bin/directslave-freebsd-i386 \
     /usr/local/directslave/bin/directslave-linux-arm /usr/local/directslave/bin/directslave-linux-i386 \
     /usr/local/directslave/bin/directslave-macos-amd64
-RUN mkdir /app /app/slave /app/logs && chown -R named:named /app && chmod -R 777 /app && chmod +x /usr/local/directslave/bin/* && chown -R named:named /usr/local/directslave
+RUN mkdir /app /app/slave /app/logs && \
+    chown -R named:named /app && \
+    chmod -R 777 /app && \
+    chmod +x /usr/local/directslave/bin/* && \
+    chown -R named:named /usr/local/directslave
 COPY ./supervisord.conf /etc/supervisor.d/supervisord.ini
 COPY entry.sh /entry.sh
 RUN dos2unix /entry.sh
 RUN chmod +x /entry.sh
+HEALTHCHECK CMD curl --fail http://localhost:2222/ || exit 1
 ENTRYPOINT ["/entry.sh"]
 EXPOSE 53/udp 53/tcp 2222/tcp
