@@ -33,6 +33,18 @@ chown -R named:named /app
 chmod -R 777 /app
 chown named:named /etc/bind/named.conf
 
+# check if we are using ssl
+if [ $SSL = "on" ]; then
+    echo "Using SSL. Getting certificate"
+    certbot certonly --standalone --agree-tos --no-eff-email --non-interactive -m $EMAIL -d $DOMAIN
+    echo "Enabling SSL in the config"
+    sed -i 's#off#'"$SSL"'#g' /usr/local/directslave/etc/directslave.conf
+    sed -i 's#/usr/local/directslave/ssl/fullchain.pem#'"/etc/letsencrypt/live/$DOMAIN/fullchain.pem"'#g' /usr/local/directslave/etc/directslave.conf
+    sed -i 's#/usr/local/directslave/ssl/privkey.pem#'"/etc/letsencrypt/live/$DOMAIN/privkey.pem"'#g' /usr/local/directslave/etc/directslave.conf
+else
+    echo "Not using SSL"
+fi
+
 # check our config
 /usr/local/directslave/bin/directslave-linux-amd64 --check
 
