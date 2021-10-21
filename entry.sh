@@ -41,6 +41,7 @@ if [ $SSL = "on" ]; then
     sed -i 's#off#'"$SSL"'#g' /usr/local/directslave/etc/directslave.conf
     sed -i 's#/usr/local/directslave/ssl/fullchain.pem#'"/etc/letsencrypt/live/$DOMAIN/fullchain.pem"'#g' /usr/local/directslave/etc/directslave.conf
     sed -i 's#/usr/local/directslave/ssl/privkey.pem#'"/etc/letsencrypt/live/$DOMAIN/privkey.pem"'#g' /usr/local/directslave/etc/directslave.conf
+    chown named:named -R /etc/letsencrypt/
 else
     echo "Not using SSL"
 fi
