@@ -1,6 +1,6 @@
 FROM alpine:latest
 RUN apk --no-cache update
-RUN apk --no-cache add bash bind supervisor
+RUN apk --no-cache add bash bind supervisor certbot
 RUN rm -rf /tmp/* /var/tmp/*
 COPY ./named.conf /etc/bind/named.conf
 RUN mkdir /var/cache/bind
@@ -24,4 +24,4 @@ RUN dos2unix /entry.sh
 RUN chmod +x /entry.sh
 HEALTHCHECK CMD curl --fail http://localhost:2222/ || exit 1
 ENTRYPOINT ["/entry.sh"]
-EXPOSE 53/udp 53/tcp 2222/tcp
+EXPOSE 80/tcp 53/udp 53/tcp 2222/tcp 2224/tcp
