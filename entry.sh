@@ -44,6 +44,13 @@ if [ $SSL = "on" ]; then
             sed -i 's#/usr/local/directslave/ssl/fullchain.pem#'"/etc/letsencrypt/live/$DOMAIN/fullchain.pem"'#g' /usr/local/directslave/etc/directslave.conf
             sed -i 's#/usr/local/directslave/ssl/privkey.pem#'"/etc/letsencrypt/live/$DOMAIN/privkey.pem"'#g' /usr/local/directslave/etc/directslave.conf
             chown named:named -R /etc/letsencrypt/
+            
+            echo "Creating crontab to update certificate."
+            echo "#!/bin/sh" > /etc/periodic/daily/certbotupdate
+            echo "certbot renew" >> /etc/periodic/daily/certbotupdate
+            chmod a+x /etc/periodic/daily/certbotupdate
+            echo "Starting cron"
+            crond
         else
             echo "No DOMAIN enviroment set."
         fi
