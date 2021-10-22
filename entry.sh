@@ -1,20 +1,8 @@
 #!/usr/bin/env bash
 [ -d /app/slave ] && echo "/app/slave exists" || mkdir /app/slave
 [ -d /app/logs ] && echo "/app/logs exists" || mkdir /app/logs
-chown -R named:named /app && chmod -R 777 /app
-# if the security key is not set yet (first time run) we set it
-echo Changing security key if needed
-sed -i 's#Change_this_line_to_something_long_&_secure#'"$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)"'#g' /usr/local/directslave/etc/directslave.conf
+[ -e /app/directslave.inc ] && echo "/app/directslave.inc exists" || touch /app/directslave.inc
 
-# checking if directslave.inc exists. If not we create an empty one, otherwise we skip
-if [ -f "/app/directslave.inc" ]; then
-    echo "/app/directslave.inc exists. Skipping"
-else 
-    echo "/app/directslave.inc does not exist. Creating"
-    touch /app/directslave.inc
-fi
-
-# checking if passwd exists. If not we create an empty one, otherwise we skip
 if [ -f "/app/passwd" ]; then
     echo "/app/passwd exists. Skipping"
 else 
@@ -25,6 +13,11 @@ else
     # here we add the default user admin with very secure password password
     /usr/local/directslave/bin/directslave-linux-amd64 --password admin:$PASSWD
 fi
+
+chown -R named:named /app && chmod -R 777 /app
+# if the security key is not set yet (first time run) we set it
+echo Changing security key if needed
+sed -i 's#Change_this_line_to_something_long_&_secure#'"$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)"'#g' /usr/local/directslave/etc/directslave.conf
 
 # make sure bind is owner of the /app folder
 chown -R named:named /app
