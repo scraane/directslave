@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-mkdir /app/slave /app/logs
+[ -d /app/slave ] && echo "/app/slave exists" || mkdir /app/slave
+[ -d /app/logs ] && echo "/app/logs exists" || mkdir /app/logs
 chown -R named:named /app && chmod -R 777 /app
 # if the security key is not set yet (first time run) we set it
 echo Changing security key if needed
