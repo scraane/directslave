@@ -1,4 +1,5 @@
 FROM alpine:latest
+VOLUME /app
 RUN apk --no-cache update && \
     apk --no-cache add bash bind supervisor certbot openssl && \
     rm -rf /tmp/* /var/tmp/*
