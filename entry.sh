@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-
+mkdir /app/slave /app/logs
+chown -R named:named /app && chmod -R 777 /app
 # if the security key is not set yet (first time run) we set it
 echo Changing security key if needed
 sed -i 's#Change_this_line_to_something_long_&_secure#'"$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)"'#g' /usr/local/directslave/etc/directslave.conf
