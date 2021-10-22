@@ -13,7 +13,7 @@ COPY ./directslave.conf /usr/local/directslave/etc/directslave.conf
 RUN rm /usr/local/directslave/bin/directslave-freebsd-amd64 /usr/local/directslave/bin/directslave-freebsd-i386 \
     /usr/local/directslave/bin/directslave-linux-arm /usr/local/directslave/bin/directslave-linux-i386 \
     /usr/local/directslave/bin/directslave-macos-amd64
-RUN mkdir /app /app/slave /app/logs && \
+RUN mkdir /app/slave /app/logs && \
     chown -R named:named /app && \
     chmod -R 777 /app && \
     chmod +x /usr/local/directslave/bin/* && \
