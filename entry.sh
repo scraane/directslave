@@ -22,10 +22,6 @@ else
     PASSWD=$(openssl rand -base64 12)
     # here we add the default user admin with very secure password password
     /usr/local/directslave/bin/directslave-linux-amd64 --password admin:$PASSWD
-    printf "\r\n\r\n*****************************************************************************************\r\n**\r\n"
-    printf "**  We are probably starting for the first time with no username and password. Creating now\r\n"
-    printf "**  >--> default: admin / %s " "$PASSWD"
-    printf "\r\n**\r\n*****************************************************************************************\r\n\r\n"
 fi
 
 # make sure bind is owner of the /app folder
@@ -63,6 +59,13 @@ fi
 
 # check our config
 /usr/local/directslave/bin/directslave-linux-amd64 --check
+
+if [ -n "$PASSWD" ]; then
+    printf "\r\n\r\n*****************************************************************************************\r\n**\r\n"
+    printf "**  We are probably starting for the first time with no username and password. Creating now\r\n"
+    printf "**  >--> default: admin / %s " "$PASSWD"
+    printf "\r\n**\r\n*****************************************************************************************\r\n\r\n"
+fi
 
 # run supervisord
 /usr/bin/supervisord -n -c /etc/supervisord.conf
