@@ -31,12 +31,12 @@ chmod -R 777 /app
 chown named:named /etc/bind/named.conf
 
 # check if we are using ssl
-if [-z $SSL ]; then
-    $SSL = "off"
+if [ -z $SSL ]; then
+    SSL = "off"
 fi
 if [ $SSL = "on" ]; then
-    if [ -n "$EMAIL" ]; then
-        if [ -n "$DOMAIN" ]; then
+    if [ -n $EMAIL ]; then
+        if [ -n $DOMAIN ]; then
             echo "Using SSL. Getting certificate"
             certbot certonly --standalone --agree-tos --no-eff-email --non-interactive -m $EMAIL -d $DOMAIN
             echo "Enabling SSL in the config"
