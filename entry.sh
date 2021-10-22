@@ -31,6 +31,7 @@ chmod -R 777 /app
 chown named:named /etc/bind/named.conf
 
 # check if we are using ssl
+if [-z $SSL ]; then $SSL = "off"
 if [ $SSL = "on" ]; then
     if [ -n "$EMAIL" ]; then
         if [ -n "$DOMAIN" ]; then
