@@ -35,13 +35,21 @@ chown named:named /etc/bind/named.conf
 
 # check if we are using ssl
 if [ $SSL = "on" ]; then
-    echo "Using SSL. Getting certificate"
-    certbot certonly --standalone --agree-tos --no-eff-email --non-interactive -m $EMAIL -d $DOMAIN
-    echo "Enabling SSL in the config"
-    sed -i 's#off#'"$SSL"'#g' /usr/local/directslave/etc/directslave.conf
-    sed -i 's#/usr/local/directslave/ssl/fullchain.pem#'"/etc/letsencrypt/live/$DOMAIN/fullchain.pem"'#g' /usr/local/directslave/etc/directslave.conf
-    sed -i 's#/usr/local/directslave/ssl/privkey.pem#'"/etc/letsencrypt/live/$DOMAIN/privkey.pem"'#g' /usr/local/directslave/etc/directslave.conf
-    chown named:named -R /etc/letsencrypt/
+    if [ -n "$EMAIL" ]; then
+        if [ -n "$DOMAIN" ]; then
+            echo "Using SSL. Getting certificate"
+            certbot certonly --standalone --agree-tos --no-eff-email --non-interactive -m $EMAIL -d $DOMAIN
+            echo "Enabling SSL in the config"
+            sed -i 's#off#'"$SSL"'#g' /usr/local/directslave/etc/directslave.conf
+            sed -i 's#/usr/local/directslave/ssl/fullchain.pem#'"/etc/letsencrypt/live/$DOMAIN/fullchain.pem"'#g' /usr/local/directslave/etc/directslave.conf
+            sed -i 's#/usr/local/directslave/ssl/privkey.pem#'"/etc/letsencrypt/live/$DOMAIN/privkey.pem"'#g' /usr/local/directslave/etc/directslave.conf
+            chown named:named -R /etc/letsencrypt/
+        else
+            echo "No DOMAIN enviroment set."
+        fi
+    else
+        echo "No EMAIL enviroment set."
+    fi
 else
     echo "Not using SSL"
 fi
