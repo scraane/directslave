@@ -5,7 +5,7 @@ RUN apk --no-cache update && \
 COPY ./named.conf /etc/bind/named.conf
 RUN mkdir /var/cache/bind && \
     chown -R named:named /var/bind /etc/bind /var/run/named /var/cache/bind && \
-    chmod -R o-rwx /var/bind /etc/bind /var/run/named /var/cache/bind &&
+    chmod -R o-rwx /var/bind /etc/bind /var/run/named /var/cache/bind && \
     mkdir /etc/supervisor.d
 ADD directslave-3.4.2-advanced-all.tar.gz /usr/local/
 COPY ./directslave.conf /usr/local/directslave/etc/directslave.conf
