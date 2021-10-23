@@ -10,7 +10,8 @@ RUN mkdir /var/cache/bind && \
     mkdir /etc/supervisor.d
 #ADD directslave-3.4.2-advanced-all.tar.gz /usr/local/
 RUN curl -O https://directslave.com/download/directslave-3.4.2-advanced-all.tar.gz && \
-    tar -xf directslave-3.4.2-advanced-all.tar.gz --directory /usr/local
+    tar -xf directslave-3.4.2-advanced-all.tar.gz --directory /usr/local && \
+    rm directslave-3.4.2-advanced-all.tar.gz
 COPY ./directslave.conf /usr/local/directslave/etc/directslave.conf
 RUN rm /usr/local/directslave/bin/directslave-freebsd-amd64 /usr/local/directslave/bin/directslave-freebsd-i386 \
     /usr/local/directslave/bin/directslave-linux-arm /usr/local/directslave/bin/directslave-linux-i386 \
