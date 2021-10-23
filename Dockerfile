@@ -1,7 +1,7 @@
 FROM alpine:latest
 VOLUME /app
 RUN apk --no-cache update && \
-    apk --no-cache add bash bind supervisor certbot openssl && \
+    apk --no-cache add bash bind supervisor certbot openssl curl && \
     rm -rf /tmp/* /var/tmp/* && \
     mkdir /var/cache/bind && \
     chown -R named:named /var/bind /etc/bind /var/run/named /var/cache/bind && \
