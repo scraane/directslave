@@ -78,14 +78,14 @@ Below are the instructions for updating containers:
 
 ### Via Docker Compose
 * Update all images: docker-compose pull
-  * or update a single image: docker-compose pull heimdall
+  * or update a single image: docker-compose pull directslave
 * Let compose update all containers as necessary: docker-compose up -d
-  * or update a single container: docker-compose up -d heimdall
+  * or update a single container: docker-compose up -d directslave
 * You can also remove the old dangling images: docker image prune
 
 ### Via Docker Run
 * Update the image: docker pull nutjob/directslave
-* Stop the running container: docker stop heimdall
-* Delete the container: docker rm heimdall
-* Recreate a new container with the same docker run parameters as instructed above (if mapped correctly to a host folder, your /config folder and settings will be preserved)
+* Stop the running container: docker stop directslave
+* Delete the container: docker rm directslave
+* Recreate a new container with the same docker run parameters as instructed above (if mapped correctly to a host folder, your /app folder and settings will be preserved)
 * You can also remove the old dangling images: docker image prune
