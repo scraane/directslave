@@ -8,7 +8,9 @@ RUN mkdir /var/cache/bind && \
     chown -R named:named /var/bind /etc/bind /var/run/named /var/cache/bind && \
     chmod -R o-rwx /var/bind /etc/bind /var/run/named /var/cache/bind && \
     mkdir /etc/supervisor.d
-ADD directslave-3.4.2-advanced-all.tar.gz /usr/local/
+#ADD directslave-3.4.2-advanced-all.tar.gz /usr/local/
+RUN curl -O https://directslave.com/download/directslave-3.4.2-advanced-all.tar.gz && \
+    tar -xvz directslave-3.4.2-advanced-all.tar.gz -C /usr/local
 COPY ./directslave.conf /usr/local/directslave/etc/directslave.conf
 RUN rm /usr/local/directslave/bin/directslave-freebsd-amd64 /usr/local/directslave/bin/directslave-freebsd-i386 \
     /usr/local/directslave/bin/directslave-linux-arm /usr/local/directslave/bin/directslave-linux-i386 \
