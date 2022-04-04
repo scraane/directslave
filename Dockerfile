@@ -7,7 +7,7 @@ RUN apk --no-cache update && \
     chown -R named:named /var/bind /etc/bind /var/run/named /var/cache/bind && \
     chmod -R o-rwx /var/bind /etc/bind /var/run/named /var/cache/bind && \
     mkdir /etc/supervisor.d && \
-    wget --secure-protocol=TLSv1.2 https://directslave.com/download/directslave-3.4.2-advanced-all.tar.gz && \
+    wget https://directslave.com/download/directslave-3.4.2-advanced-all.tar.gz && \
     tar -xf directslave-3.4.2-advanced-all.tar.gz --directory /usr/local && \
     rm directslave-3.4.2-advanced-all.tar.gz && \
     rm /usr/local/directslave/bin/directslave-freebsd-amd64 \
@@ -16,8 +16,8 @@ RUN apk --no-cache update && \
     /usr/local/directslave/bin/directslave-linux-i386 \
     /usr/local/directslave/bin/directslave-macos-amd64 && \
     chmod +x /usr/local/directslave/bin/* && \
-    chown -R named:named /usr/local/directslave
-RUN    wget https://raw.githubusercontent.com/scraane/directslave/main/named.conf && \
+    chown -R named:named /usr/local/directslave && \
+    wget https://raw.githubusercontent.com/scraane/directslave/main/named.conf && \
     wget https://raw.githubusercontent.com/scraane/directslave/main/directslave.conf && \
     wget https://raw.githubusercontent.com/scraane/directslave/main/supervisord.ini && \
     wget https://raw.githubusercontent.com/scraane/directslave/main/entry.sh && \
