@@ -7,7 +7,7 @@ RUN apk --no-cache update && \
     chown -R named:named /var/bind /etc/bind /var/run/named /var/cache/bind && \
     chmod -R o-rwx /var/bind /etc/bind /var/run/named /var/cache/bind && \
     mkdir /etc/supervisor.d && \
-    curl -O https://directslave.com/download/directslave-3.4.2-advanced-all.tar.gz && \
+    wget https://directslave.com/download/directslave-3.4.2-advanced-all.tar.gz && \
     tar -xf directslave-3.4.2-advanced-all.tar.gz --directory /usr/local && \
     rm directslave-3.4.2-advanced-all.tar.gz && \
     rm /usr/local/directslave/bin/directslave-freebsd-amd64 \
