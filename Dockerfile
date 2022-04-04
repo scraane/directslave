@@ -16,8 +16,8 @@ RUN apk --no-cache update && \
     /usr/local/directslave/bin/directslave-linux-i386 \
     /usr/local/directslave/bin/directslave-macos-amd64 && \
     chmod +x /usr/local/directslave/bin/* && \
-    chown -R named:named /usr/local/directslave && \
-    wget https://raw.githubusercontent.com/scraane/directslave/main/named.conf && \
+    chown -R named:named /usr/local/directslave
+RUN    wget https://raw.githubusercontent.com/scraane/directslave/main/named.conf && \
     wget https://raw.githubusercontent.com/scraane/directslave/main/directslave.conf && \
     wget https://raw.githubusercontent.com/scraane/directslave/main/supervisord.ini && \
     wget https://raw.githubusercontent.com/scraane/directslave/main/entry.sh && \
