@@ -16,11 +16,19 @@ RUN apk --no-cache update && \
     /usr/local/directslave/bin/directslave-linux-i386 \
     /usr/local/directslave/bin/directslave-macos-amd64 && \
     chmod +x /usr/local/directslave/bin/* && \
-    chown -R named:named /usr/local/directslave
-COPY ./named.conf /etc/bind/named.conf
-COPY ./directslave.conf /usr/local/directslave/etc/directslave.conf
-COPY ./supervisord.conf /etc/supervisor.d/supervisord.ini
-COPY entry.sh /entry.sh
+    chown -R named:named /usr/local/directslave && \
+    wget https://raw.githubusercontent.com/scraane/directslave/main/named.conf && \
+    wget https://raw.githubusercontent.com/scraane/directslave/main/directslave.conf && \
+    wget https://raw.githubusercontent.com/scraane/directslave/main/supervisord.ini && \
+    wget https://raw.githubusercontent.com/scraane/directslave/main/entry.sh && \
+    mv named.conf /etc/bind/ && \
+    mv ./directslave.conf /usr/local/directslave/etc/ && \
+    mv ./supervisord.conf /etc/supervisor.d/ && \
+    mv ./entry.sh /
+#COPY ./named.conf /etc/bind/named.conf
+#COPY ./directslave.conf /usr/local/directslave/etc/directslave.conf
+#COPY ./supervisord.conf /etc/supervisor.d/supervisord.ini
+#COPY entry.sh /entry.sh
 RUN dos2unix /entry.sh && chmod +x /entry.sh
 HEALTHCHECK CMD curl --fail http://localhost:2222/ || exit 1
 ENTRYPOINT ["/entry.sh"]
