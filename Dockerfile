@@ -1,13 +1,13 @@
 FROM alpine:latest
 VOLUME /app
 RUN apk --no-cache update && \
-    apk --no-cache add bash bind supervisor certbot openssl wget && \
+    apk --no-cache add bash bind supervisor certbot openssl curl && \
     rm -rf /tmp/* /var/tmp/* && \
     mkdir /var/cache/bind && \
     chown -R named:named /var/bind /etc/bind /var/run/named /var/cache/bind && \
     chmod -R o-rwx /var/bind /etc/bind /var/run/named /var/cache/bind && \
     mkdir /etc/supervisor.d && \
-    wget https://directslave.com/download/directslave-3.4.2-advanced-all.tar.gz && \
+    curl -O https://directslave.com/download/directslave-3.4.2-advanced-all.tar.gz && \
     tar -xf directslave-3.4.2-advanced-all.tar.gz --directory /usr/local && \
     rm directslave-3.4.2-advanced-all.tar.gz && \
     rm /usr/local/directslave/bin/directslave-freebsd-amd64 \
