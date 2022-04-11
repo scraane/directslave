@@ -20,7 +20,7 @@ RUN apk --no-cache update && \
     chown -R named:named /usr/local/directslave && \
     wget https://raw.githubusercontent.com/scraane/directslave/main/named.conf && \
     wget https://raw.githubusercontent.com/scraane/directslave/main/directslave.conf && \
-    wget https://raw.githubusercontent.com/scraane/directslave/main/supervisord.ini && \
+    wget https://raw.githubusercontent.com/scraane/directslave/main/supervisord.conf && \
     wget https://raw.githubusercontent.com/scraane/directslave/main/entry.sh && \
     mv named.conf /etc/bind/ && \
     mv ./directslave.conf /usr/local/directslave/etc/ && \
