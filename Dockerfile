@@ -26,12 +26,8 @@ RUN apk --no-cache update && \
     mv named.conf /etc/bind/ && \
     mv ./directslave.conf /usr/local/directslave/etc/ && \
     mv ./supervisord.conf /etc/supervisor.d/ && \
-    mv ./entry.sh /
-#COPY ./named.conf /etc/bind/named.conf
-#COPY ./directslave.conf /usr/local/directslave/etc/directslave.conf
-#COPY ./supervisord.conf /etc/supervisor.d/supervisord.ini
-#COPY entry.sh /entry.sh
-RUN dos2unix /entry.sh && chmod +x /entry.sh
+    mv ./entry.sh / && \
+    dos2unix /entry.sh && chmod +x /entry.sh
 HEALTHCHECK CMD curl --fail http://localhost:2222/ || exit 1
 ENTRYPOINT ["/entry.sh"]
 EXPOSE 80/tcp 53/udp 53/tcp 2222/tcp 2224/tcp
