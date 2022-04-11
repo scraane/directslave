@@ -1,4 +1,5 @@
 FROM alpine:latest
+ARG dsversion=directslave-3.4.3-advanced-all.tar.gz
 VOLUME /app
 RUN apk --no-cache update && \
     apk --no-cache add bash bind supervisor certbot openssl wget && \
@@ -7,9 +8,9 @@ RUN apk --no-cache update && \
     chown -R named:named /var/bind /etc/bind /var/run/named /var/cache/bind && \
     chmod -R o-rwx /var/bind /etc/bind /var/run/named /var/cache/bind && \
     mkdir /etc/supervisor.d && \
-    wget https://directslave.com/download/directslave-3.4.2-advanced-all.tar.gz && \
-    tar -xf directslave-3.4.2-advanced-all.tar.gz --directory /usr/local && \
-    rm directslave-3.4.2-advanced-all.tar.gz && \
+    wget https://directslave.com/download/$dsversion && \
+    tar -xf $dsversion --directory /usr/local && \
+    rm $dsversion && \
     rm /usr/local/directslave/bin/directslave-freebsd-amd64 \
     /usr/local/directslave/bin/directslave-freebsd-i386 \
     /usr/local/directslave/bin/directslave-linux-arm \
