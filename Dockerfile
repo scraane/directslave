@@ -1,4 +1,5 @@
 FROM alpine:latest
+ADD VERSION .
 ARG dsversion=3.4.3
 VOLUME /app
 RUN apk --no-cache update && \
