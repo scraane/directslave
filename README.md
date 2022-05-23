@@ -12,7 +12,7 @@ DirectSlave docker based on alpine
 This software (DirectSlave) is designed for fast & easy slave DNS management, interacting with DirectAdmin powered servers using DirectAdmin multiserver API. Configuration of master DirectAdmin server is not necessary, software provides DirectAdmin multiserver API emulation via HTTP protocol. You only need to enable Multi Server feature on master DirectAdmin server and set it up to work with DirectSlave. Basic understanding of DNS basics also might be helpful.
 
 ## Directslave version
-### Using 3.4.2
+### Using 3.4.3
 
 ## Usage
 Here are some example snippets to help you get started creating a container.
